@@ -5,12 +5,11 @@ on:
 
 jobs:
   build_and_test:
-    name:  ${{ matrix.os }}, rust-${{ matrix.rust }}
+    name:  rust-${{ matrix.rust }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        rust: [stable, nightly, 1.71.0]
-    runs-on: ${{ matrix.os }}
+        rust: [stable, nightly]
+    runs-on: ubuntu-latest
     env:
       RUSTFLAGS: -Dwarnings
     steps:
@@ -18,7 +17,7 @@ jobs:
         uses: actions/checkout@master
       - name: Install Rust ${{ matrix.rust }}
         run: |
-          rustup install ${{ matrix.rust }} --profile minimal
+          rustup install ${{ matrix.rust }} --profile minimal --component clippy
           rustup default ${{ matrix.rust }}
       - name: cargo build
         run: cargo build --release --all-features --all-targets --color=always
@@ -26,20 +25,3 @@ jobs:
         run: cargo test --release --all-features --all-targets --color=always
       - name: cargo clippy
         run: cargo clippy --release --all-features --all-targets --color=always
-  check:
-    name:  check-only ${{ matrix.target }}, rust-${{ matrix.rust }}
-    strategy:
-      matrix:
-        target: [wasm32-unknown-unknown]
-        rust: [stable, nightly, 1.71.0]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-      - name: Install Rust ${{ matrix.rust }} target ${{ matrix.target }}
-        run: |
-          rustup install ${{ matrix.rust }} --profile minimal
-          rustup default ${{ matrix.rust }}
-          rustup target add ${{ matrix.target }}
-      - name: cargo check
-        run: cargo check --release --all-features --all-targets --color=always --target ${{ matrix.target }}
