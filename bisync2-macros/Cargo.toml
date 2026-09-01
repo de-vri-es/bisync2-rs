@@ -1,0 +1,10 @@
+[package]
+name = "bisync2-macros"
+description = "macro implementations for the bisync2 crate"
+license = "MIT OR Apache-2.0"
+version = "0.2.4"
+edition = "2021"
+repository = "https://github.com/de-vri-es/bisync2-rs"
+
+[lib]
+proc-macro = true

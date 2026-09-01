@@ -1,7 +1,9 @@
 #[path = "."]
+#[allow(clippy::duplicate_mod)]
 pub mod blocking {
     use crate::blocking as crate_root;
-    use bisync::synchronous::*;
+    use bisync2::synchronous::*;
+    #[allow(clippy::duplicate_mod)]
     mod inner;
     pub use inner::*;
 }
@@ -9,7 +11,8 @@ pub mod blocking {
 #[path = "."]
 pub mod asynchronous {
     use crate::asynchronous as crate_root;
-    use bisync::asynchronous::*;
+    use bisync2::asynchronous::*;
+    #[allow(clippy::duplicate_mod)]
     mod inner;
     pub use inner::*;
 }

@@ -1,4 +1,6 @@
-//! Do not use this crate directly.
+//! proc-macros for the [`bisync2`] crate.
+//!
+//! [`bisync2`]: https://docs.rs/bisync2
 
 use proc_macro::{Group, TokenStream};
 

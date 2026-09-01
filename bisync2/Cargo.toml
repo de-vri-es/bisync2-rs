@@ -1,0 +1,11 @@
+[package]
+name = "bisync2"
+description = "write async-generic code"
+license = "MIT OR Apache-2.0"
+version = "0.3.2"
+edition = "2021"
+repository = "https://github.com/de-vri-es/bisync2-rs"
+
+
+[dependencies]
+bisync2-macros = { version = "=0.2.4", path = "../bisync2-macros" }
