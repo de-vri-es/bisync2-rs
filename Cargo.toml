@@ -1,0 +1,7 @@
+[workspace]
+resolver = "3"
+members = [
+	"bisync2",
+	"bisync2-macros",
+	"bisync2-example",
+]
